@@ -7,4 +7,3 @@ email_validator
 python-decouple
 gunicorn
 flask_mail
-google-api-python-client google-auth-httplib2 google-auth-oauthlib
