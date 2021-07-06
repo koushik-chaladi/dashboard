@@ -24,7 +24,6 @@ from sqlalchemy import create_engine
 from sqlalchemy import desc
 import time
 from flask_mail import Mail,Message
-from run import returnApp
 from sqlalchemy import and_
 
 
@@ -168,12 +167,10 @@ def email():
 
 @blueprint.route('/emailconfirm',methods=["POST"])
 def emailconfirm():
-        mail=Mail(returnApp())
-        emailsubject=request.form.get("subject")
-        emailbody=request.form.get("emailbody")
-        msg = Message(emailsubject,sender ='sender',recipients = ['reciever'])  #sender and receiver email
-        msg.body = emailbody
-        mail.send(msg)
+        #emailbody=request.form.get("emailbody")
+        #msg = Message(emailsubject,sender ='sender',recipients = ['reciever'])  #sender and receiver email
+        #msg.body = emailbody
+        #mail.send(msg)
         return render_template('email.html',data="Mail Sent Sucessfully")
 @blueprint.route('/queryReport',methods=["GET","POST"])
 def queryReport():
