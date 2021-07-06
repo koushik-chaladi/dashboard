@@ -1,0 +1,84 @@
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="/">
+        <img src="https://www.nrsc.gov.in/sites/default/files/inline-images//nrsc.png" style="width:111px;height:70px;" alt="Argon Dashboard - Flask Template Logo.">
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="/">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/icons.html">
+              <i class="ni ni-planet text-orange"></i>
+              <span class="nav-link-text">Report</span>
+            </a>
+          </li
+          <li class="nav-item">
+            <a class="nav-link {% if 'tables' in segment %} active {% endif %}" href="{{ url_for('base_blueprint.queryReport') }}">
+              <i class="ni ni-bullet-list-67 text-default"></i>
+              <span class="nav-link-text">Tables</span>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link {% if 'Create Project' in segment %} active {% endif %}"  href="{{ url_for('base_blueprint.empPopulate') }}">
+              <i class="ni ni-circle-08 text-pink"></i>
+              <span class="nav-link-text">ProjectCreation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register.html">
+              <i class="ni ni-circle-08 text-pink"></i>
+              <span class="nav-link-text">Register</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('base_blueprint.logout') }}">
+              <i class="ni ni-user-run text-red"></i>
+              <span class="nav-link-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">Other Websites</span>
+        </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.isro.gov.in/" target="_blank">
+              <i class="ni ni-palette"></i>
+              <span class="nav-link-text">ISRO</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://bhuvan.nrsc.gov.in/bhuvan_links.php" target="_blank">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Bhuvan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active active-pro" 
+               target="_blank" 
+               href="https://bhuvan.nrsc.gov.in/bhuvan_links.php">
+              <i class="ni ni-send text-dark"></i>
+              <span class="nav-link-text">bhuvan</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

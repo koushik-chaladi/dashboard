@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: block;
+  position: fixed;
+  bottom:400px;
+  right: 500px;
+  z-index: 9;
+}
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 200px;
+  text-align: center;
+  background-image:url("https://www.manipalhospitals.com/uploads/banners/desktop/Doctors_operating_at_manipal_hospital_desktop.png");
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<script src ='http://localhost:8080/prweb/app/HealthCh_2138/?pyActivity=pzIncludeMashupScripts'></script>
+<div class="header">
+  <h1></h1>
+  <p></p>
+</div>
+
+<div class="navbar">
+  <a href="http://localhost:8080/prweb/PRServlet/?pzAuth=guest&pyActivity=Rule-Obj-Activity.Show" class="active">Login/Sign up</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2>About Hospital</h2>
+
+    
+<!-- ********************** End Pega content ********************** -->
+    <div class="fakeimg" style="height:200px;"><img src="https://revcycleintelligence.com/images/site/article_headers/_normal/hospital%2C_green.jpg" hieght=300 width=300></div>
+    <p>Well Care is providing its services since 1990. A well renowned hospital for its services and high success rate in surgeries. Our hospital has world class infrastructure and highly skilled doctors</p>
+  </div>
+  <div class="main" style="background-color:#ffb3b3">
+    <div class="fakeimg" style="height:200px;"><img src="http://rajhospitals.com/img/b-3-min.jpg" height=200 width=750></div>
+    <p></p><p></p>
+    <p>Speciality of Hospital</p>
+    <p>Well Careis a 250 bedded tertiary care hospital which includes 50 Beds of ICU, consisting of a wide spectrum of 50 Super Specialty & Specialty Consultants and an advantage of having all diagnostic services under one roof. Manipal Hospital is one of the multispeciality hospital in Vijayawada, Andhra Pradesh. The hospital operates 24/7 
+      Accident and Emergency services, Lab Services, Pharmacy, Blood bank and Ambulance Services. With its flagship Quaternary care facility located in Bangalore, India, 8 tertiary care, 7 secondary care and 2 primary care clinics spread across India and abroad.</p>
+  
+  </div>
+</div>
+<br>
+  <br>
+  <br>
+  <br>
+<button class="open-button" onclick="openForm()">Chat</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+<div  class="pop-up"
+data-pega-gadgetname ='PegaGadget' 
+data-pega-action ='createNewWork' 
+data-pega-action-param-classname ='Work-Channel-Chat' 
+data-pega-action-param-flowname ='pyStartCase' 
+data-pega-isdeferloaded ='false' 
+data-pega-applicationname ='HealthCh' 
+data-pega-threadname ='STANDARD' 
+data-pega-resizetype ='horizontal' 
+data-pega-url ='http://localhost:8080/prweb/PRChat/app/HealthCh_2138/' 
+data-pega-action-param-parameters ='{"channelId":"bot45bdad95203d4c2bb4ad681d0f4000c0"}' style="width:500px;height:300px;position:fixed; z-index: -1;">  
+</div>
+  </form>
+</div>
+<script>
+const popup = document.querySelector('.chat-popup');
+popup.style.display === 'none' ? popup.style.display = 'block' : popup.style.display = 'none';
+</script>
+<script>
+function openForm() {
+const popup = document.querySelector('.chat-popup');
+popup.style.display === 'none' ? popup.style.display = 'block' : popup.style.display = 'none';
+}
+</script>
+</body>
+</html>

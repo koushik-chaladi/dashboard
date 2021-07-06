@@ -1,0 +1,230 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+<head>
+	<title> Table Row Toggel </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
+}
+tr 
+{
+cursor:pointer;
+}
+</style>
+</head>
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tables</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <button class="btn btn-sm btn-neutral" onclick="show()">New</button>
+          </div>
+		  
+          </div>
+        </div>
+      </div>
+    </div>
+	<script>
+	function show()
+	{
+	const popup = document.querySelector('.popup');
+popup.style.display === 'none' ? popup.style.display = 'block' : popup.style.display = 'none';
+	}
+	</script>
+	
+<div class="col-md-3 popup" style="padding-top:30px;top:30px;right:0px; position:absolute; display:none;z-index:9"> 
+			<div class="card bg-secondary border-0" style="border-radius: 5%;">
+			<div class="card-body px-lg-5 py-lg-5 " style="background-color:white;border-radius: 5%">
+<form class="form-horizontal" role="form" method="POST" action="{{ url_for('base_blueprint.sortReport') }}" name="filter">
+				<div class="form-group">
+					<div class="input-group">
+						<select class="form-control column" aria-label="Select Column" name="column">
+								  <option value="ProjectTitle" {% if k=="ProjectTitle" %} selected="selected" {% endif %}>Project Title</option>
+								  <option value="Budget" {% if k=="Budget" %} selected="selected" {% endif %}>Budget</option>
+								  <option value="EndDate" {% if k=="EndDate" %}selected="selected" {% endif %}>End Date</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<select class="form-control" aria-label="Select Column" name="order">
+								  <option value="Asc" {% if order=="Asc" %} selected="selected" {% endif %}>Ascending Order</option>
+								  <option value="Desc" {% if order=="Desc" %} selected="selected" {% endif %}>Descending Order</option>
+						</select>
+					</div>
+				</div>
+			 <div class="form-group Budget">
+					<div class="input-group">
+						<input type="text" class="form-control" aria-label="Select Column" name="lower">
+					</div>
+				</div>
+						 <div class="form-group Budget">
+					<div class="input-group">
+						<input type="text" class="form-control" aria-label="Select Column" name="upper">
+					</div>
+				</div>
+			<div class="form-group EndDate">
+					<div class="input-group">
+						<input type="date" class="form-control" aria-label="Select Column" name="ldate">
+					</div>
+				</div>
+						 <div class="form-group EndDate">
+					<div class="input-group">
+						<input type="date" class="form-control" aria-label="Select Column" name="udate">
+					</div>
+				</div>
+				<div class="form-group">
+					<div>
+						<button type="submit" class="btn btn-success btn-block submit" align="center">Submit</button>
+					</div>
+					<br>
+					<div>
+						<button type="submit" class="btn btn-danger btn-block submit" align="center" id="close">Close</button>
+					</div>
+					<script>
+					$("#close").click(function(){
+					$(".popup").hide();
+						});
+					</script>
+					<script>
+					$('.Budget').hide()
+					</script>
+					<script>  
+					$('.column').change(function()
+					{$('.Budget').hide();
+					$('.' + $(this).val()).show();
+					});
+					</script>
+					<script>
+					$('.EndDate').hide()
+					</script>
+					<script>  
+					$('.column').change(function()
+					{$('.EndDate').hide();
+					$('.' + $(this).val()).show();
+					});
+					</script>
+			   </div>
+			</form>
+		</div>
+</div>
+</div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Light table</h3>
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Project</th>
+                  <th scope="col" class="sort" data-sort="budget">Budget</th>
+                  <th scope="col" class="sort" data-sort="status">Group</th>
+                  <th scope="col">StartDate</th>
+                  <th scope="col" class="sort" data-sort="completion">End Date</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+				  {% for i in data %}
+				  {% set j="demo" ~ i.ProjectID.split(".")[1] %}
+				  <tr colspan="6" data-toggle="collapse" data-target={{"#" ~ j}} class="accordion-toggle">
+				  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="#" class="avatar rounded-circle mr-3">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">
+                      </a>
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm">{{i.ProjectTitle}}</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="budget">
+                    {{i.Budget}}
+                  </td>
+                  <td>
+                    <span class="badge badge-dot mr-5">
+                      <i class="bg-warning"></i>
+                      <span class="status">{{i.Area}}</span>
+                    </span>
+                  </td>
+                  <td>
+                    {{i.StartDate}}
+                  </td>
+                  <td class="EndDate">
+					{{i.EndDate}}
+                  </td>
+                  <td class="text-right">
+                    <div class="dropdown">
+                      <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+				<tr>
+				            <td colspan="6" class="hiddenRow">
+					            <div class="accordian-body collapse p-3" id={{j}}>
+									{% for t in team %}
+									{% if t.ProjectID==i.ProjectID %}
+					            	<p>Team Member : <span>{{t.EmployeeName}}</span></p>
+									{% endif %}
+									{% endfor %}
+									{% for m in milestone %}
+									{% if m.ProjectID==i.ProjectID%}
+									<p>Milestone : <span> {{m.Milestone}} </span> Milestone Date <span> {{m.MilestoneDate}} </span> </p>
+									{% endif %}
+									{% endfor %}
+									<a href="{{url_for('base_blueprint.email')}}" class="btn btn-sm btn-neutral">Send Email</a>
+									<a href="#" class="btn btn-sm btn-neutral">Schedule Meeting</a>
+								</div>
+				        	</td> 
+				        </tr>
+                <tr>
+			{% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}
