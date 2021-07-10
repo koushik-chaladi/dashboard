@@ -109,7 +109,7 @@ def empPopulate():
     conn=engine.connect()
     employee=conn.execute("Select *from Employee")
     print(employee)
-    return render_template("project_2.html", employee=employee)
+    return render_template("icons.html", employee=employee)
 @blueprint.route('/addproject',methods=['GET', 'POST'])
 def addproject():
     ProjectID=time.time()
