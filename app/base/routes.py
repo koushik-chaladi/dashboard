@@ -105,7 +105,9 @@ def logout():
 
 @blueprint.route('/empPopulate', methods=['GET', 'POST'])
 def empPopulate():
-    return render_template("project_2.html", employee=["koushik","chaladi"])
+    conn=engine.connect()
+    employee=conn.execute("Select *from Employee")
+    return render_template("project_2.html", employee=employee)
 @blueprint.route('/addproject',methods=['GET', 'POST'])
 def addproject():
     ProjectID=time.time()
