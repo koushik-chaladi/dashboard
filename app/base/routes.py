@@ -108,6 +108,9 @@ def empPopulate():
     print("empPopulate")
     conn=engine.connect()
     employee=conn.execute("Select *from Employee")
+    k=list(employee)
+    for i in k:
+	print(i.EmployeeName)
     print(employee)
     return render_template("icons.html", employee=employee)
 @blueprint.route('/addproject',methods=['GET', 'POST'])
