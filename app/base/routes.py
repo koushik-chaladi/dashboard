@@ -138,7 +138,7 @@ def addnew():
     ProjectInvestigator=request.form['Principal Investigator']
     ProjectTeam=request.form.getlist('addmore[]')
     Budget=request.form['budget']
-    EndDate=request.form['EndDate']
+    EndDate=request.form['Enddate']
     StartDate=request.form['StartDate']
     Area=request.form['Area']
     project=Project(ProjectID, ProjectTitle, ProjectInvestigator, Budget, EndDate, StartDate, Area)
